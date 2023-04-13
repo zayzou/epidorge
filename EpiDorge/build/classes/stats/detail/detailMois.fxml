@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="779.0" stylesheets="@../../resources/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stats.detail.DetailMoisController">
+   <children>
+      <TableView fx:id="tbData" layoutX="164.0" layoutY="14.0" prefHeight="236.0" prefWidth="452.0" AnchorPane.bottomAnchor="275.0" AnchorPane.leftAnchor="163.0" AnchorPane.rightAnchor="163.0" AnchorPane.topAnchor="14.0">
+         <columns>
+            <TableColumn fx:id="coldate" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="colQte" prefWidth="75.0" text="Quantité" />
+            <TableColumn fx:id="colTotal" prefWidth="75.0" text="Total" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <BarChart fx:id="venteChart" alternativeColumnFillVisible="true" layoutX="44.0" layoutY="268.0" legendSide="RIGHT" prefHeight="249.0" prefWidth="679.0" title="Statistique des ventes" titleSide="BOTTOM" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="268.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" tickLength="5.0" fx:id="xAxis" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="yAxis" side="LEFT" />
+         </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1200.0" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../resources/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.RootUIController">
+   <children>
+      <AnchorPane fx:id="rootAnchorPane">
+         <children>
+            <AnchorPane layoutY="23.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="23.0">
+               <children>
+                  <StackPane fx:id="dataContainer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <MenuBar layoutY="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Fichier">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#loadHome" text="Accueil">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="HOME" />
+                           </graphic></MenuItem>
+                        <CheckMenuItem fx:id="checkfullScreen" mnemonicParsing="false" onAction="#fullScreen" text="Plein écran">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="TELEVISION" />
+                           </graphic></CheckMenuItem>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadlogOut" text="déconnecter">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="SIGN_OUT" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#quitter" text="Quitter">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="POWER_OFF" />
+                           </graphic></MenuItem>
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Stock">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#loadStock" text="Afficher">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="EYE" />
+                           </graphic></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#loadApprov" text="S'approvisioner">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="TRUCK" />
+                           </graphic></MenuItem>
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Ventes">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#loadVente" text="Ajouter une vente">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="TAGS" />
+                           </graphic></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#loadLigneVente" text="Approvisionner employé">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="TAGS" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#loadStatVente" text="Statistiques">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="AREA_CHART" />
+                           </graphic></MenuItem>
+                     </items></Menu>
+                  <Menu mnemonicParsing="false" text="Clients">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#loadClients" text="Mes clients">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="USERS" />
+                           </graphic></MenuItem>
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Employés">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#loadEmploye" text="Afficher">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="ADDRESS_CARD" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#addEmploye" text="Ajouter">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="USER_PLUS" />
+                           </graphic>
+                        </MenuItem>
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Aide">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#loadAbout" text="A propos">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="CODE" />
+                           </graphic></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#loadSettings" text="Préferences">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="WRENCH" />
+                           </graphic></MenuItem>
+                        <Menu mnemonicParsing="false" text="Base de données">
+                          <items>
+                              <MenuItem fx:id="btnExport" mnemonicParsing="false" onAction="#buckupDatabase" text="Exporter la base de données" />
+                              <MenuItem fx:id="btnImport" mnemonicParsing="false" onAction="#buckupDatabase" text="Importer la base de données" />
+                          </items>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="DATABASE" />
+                           </graphic>
+                        </Menu>
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

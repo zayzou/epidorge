@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="595.0" prefWidth="936.0" stylesheets="@../resources/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dashboard.HomeController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="200.0" prefWidth="962.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="282.0" spacing="20.0">
+               <children>
+                  <FontAwesomeIconView glyphName="BOOK" size="30" text="" />
+                  <JFXTextField fx:id="tfclient" labelFloat="true" onAction="#loadClient" prefHeight="26.0" prefWidth="230.0" promptText="Client" />
+               </children>
+            </VBox>
+            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#clearClient" styleClass="btn">
+               <graphic>
+                  <FontAwesomeIconView fx:id="clear1" accessibleRole="IMAGE_VIEW" glyphName="CLOSE" size="20" />
+               </graphic>
+               <HBox.margin>
+                  <Insets left="-34.0" top="20.0" />
+               </HBox.margin>
+            </Button>
+            <StackPane fx:id="clientInfoContainer">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </HBox.margin>
+               <children>
+                  <VBox fx:id="dataClient" alignment="CENTER" prefHeight="147.0" prefWidth="550.0">
+                     <children>
+                        <Text fx:id="soldeClient" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" text="Rest à règler : " />
+                        <Text fx:id="dateLastClient" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" text="Date dèrnier paiement : " />
+                     </children></VBox>
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+      <HBox fx:id="stock_info" alignment="CENTER" layoutY="221.0" prefHeight="279.0" prefWidth="962.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="279.0" prefWidth="282.0" spacing="20.0">
+               <children>
+                  <FontAwesomeIconView glyphName="USER" size="30" />
+                  <JFXTextField fx:id="tfFournisseur" labelFloat="true" onAction="#loadFournisseur" prefHeight="38.0" prefWidth="275.0" promptText="Fournisseur" />
+               </children>
+            </VBox>
+            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#clear" styleClass="btn">
+               <graphic>
+                  <FontAwesomeIconView fx:id="clear" accessibleRole="IMAGE_VIEW" glyphName="CLOSE" size="20" />
+               </graphic>
+               <HBox.margin>
+                  <Insets left="-34.0" top="42.0" />
+               </HBox.margin>
+            </Button>
+            <StackPane fx:id="stockInfoContainer" prefHeight="279.0" prefWidth="568.0">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+               <children>
+                  <VBox fx:id="dataFournisseur" alignment="CENTER" prefHeight="195.0" prefWidth="550.0" visible="false">
+                     <children>
+                        <Text fx:id="soldeFour" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" text="Reste à règler : " textAlignment="CENTER" wrappingWidth="460.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text fx:id="dateLast" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-text" text="Date dérnier paiement :  " />
+                     </children>
+                  </VBox>
+                  <LineChart fx:id="lineChart" alternativeRowFillVisible="false" horizontalZeroLineVisible="false" legendSide="RIGHT" prefHeight="377.0" prefWidth="665.0" title="Etat des Achats et des ventes" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+                     <xAxis>
+                        <CategoryAxis fx:id="prodAxis" endMargin="0.0" prefHeight="32.0" prefWidth="494.0" side="BOTTOM" startMargin="0.0" tickLabelFill="WHITE" tickLabelGap="0.0" tickLabelRotation="35.0">
+                           <tickLabelFont>
+                              <Font size="12.0" />
+                           </tickLabelFont>
+                        </CategoryAxis>
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis fx:id="valAxis" minorTickCount="3" prefHeight="186.0" prefWidth="27.0" side="LEFT" tickLabelFill="WHITE" tickLabelGap="1.0" tickLength="5.0">
+                           <tickLabelFont>
+                              <Font size="12.0" />
+                           </tickLabelFont>
+                        </NumberAxis>
+                     </yAxis>
+                  </LineChart>
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+      <HBox fx:id="paneAddSolde" alignment="CENTER" prefHeight="95.0" prefWidth="936.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <JFXButton fx:id="btnAjouter" onAction="#debiter" prefHeight="38.0" prefWidth="142.0" styleClass="btn-default" text="Ajouter">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" />
+               </graphic></JFXButton>
+            <JFXButton fx:id="btnDebiter" onAction="#verser" prefHeight="39.0" prefWidth="142.0" styleClass="btn-default" text="Débiter">
+               <graphic>
+                  <FontAwesomeIconView glyphName="MINUS" />
+               </graphic></JFXButton>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
