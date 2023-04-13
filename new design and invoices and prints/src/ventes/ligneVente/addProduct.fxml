@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="rootPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ventes.ligneVente.AddProductController">
+   <children>
+      <AnchorPane fx:id="mainContainer" prefHeight="593.0" prefWidth="1267.0" stylesheets="@../../resources/dark-theme.css">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="104.0" prefWidth="753.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXComboBox fx:id="cbEmploye" focusColor="#ffff8d" layoutX="10.0" layoutY="44.0" onAction="#initDes" prefHeight="37.0" prefWidth="198.0" promptText="Employé" />
+                  <JFXComboBox fx:id="cbType" focusColor="#ffff8d" onAction="#loadDes" prefHeight="37.0" prefWidth="204.0" promptText="Type" />
+                  <JFXComboBox fx:id="cbDes" focusColor="#ffff8d" onAction="#initLab" prefHeight="37.0" prefWidth="228.0" promptText="Désignation" />
+                  <JFXTextField fx:id="tfQte" labelFloat="true" onAction="#ajouterProduit" prefHeight="38.0" prefWidth="89.0" promptText="Qte">
+                     <tooltip>
+                        <Tooltip text="Qte en détail !" />
+                     </tooltip>
+                  </JFXTextField>
+                  <JFXButton onAction="#ajouterProduit" prefHeight="39.0" prefWidth="159.0" styleClass="btn-default" text="Valider">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CHECK" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXToggleButton fx:id="toggleBtn" onAction="#toggleLoad" prefHeight="60.0" prefWidth="254.0" text="Modifer l'affichage" textFill="#b2b2b2" toggleColor="#ffff8d" toggleLineColor="#999999" unToggleColor="#1976d2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip text="Afficher seuleument l'employé séléctionner" />
+                     </tooltip>
+                  </JFXToggleButton>
+                  <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#refresh" styleClass="btn-default">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="REFRESH" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXDatePicker fx:id="tfDate" onAction="#loadHisto" prefHeight="38.0" prefWidth="263.0" promptText="Historique" styleClass="date-picker" />
+                  <FontAwesomeIconView glyphName="SEARCH" size="20" />
+                  <JFXTextField fx:id="tfSearchProd" labelFloat="true" promptText="Recherche" />
+               </children>
+            </HBox>
+            <TableView fx:id="tableProd" editable="true" layoutY="125.0" prefHeight="412.0" prefWidth="1267.0" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
+              <columns>
+                <TableColumn fx:id="colId" prefWidth="75.0" text="#" visible="false" />
+                <TableColumn fx:id="colDes" prefWidth="75.0" text="Désignation" />
+                  <TableColumn fx:id="colQte" prefWidth="75.0" text="Qte" />
+                  <TableColumn fx:id="colPrixUnit" prefWidth="75.0" text="Prix de vente" />
+                  <TableColumn fx:id="colTotal" prefWidth="75.0" text="Total" />
+                  <TableColumn fx:id="colVendeur" prefWidth="75.0" text="Vendeur" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <HBox alignment="CENTER" layoutY="526.0" prefHeight="53.0" prefWidth="1031.0" spacing="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="236.0">
+               <children>
+                  <FontAwesomeIconView glyphName="INFO_CIRCLE" size="30" />
+                  <Label fx:id="labPrix" prefHeight="30.0" prefWidth="210.0" style="-fx-font-weight: bold;" styleClass="text-field" text="Prix d'achat" />
+                  <Label fx:id="labQte" prefHeight="30.0" prefWidth="210.0" style="-fx-font-weight: bold;" styleClass="text-field" text="Qte en stock" />
+                  <Label fx:id="labVente" prefHeight="30.0" prefWidth="210.0" style="-fx-font-weight: bold;" styleClass="text-field" text="Prix de vente" />
+                  <Label fx:id="labUnite" layoutX="355.0" layoutY="31.0" prefHeight="30.0" prefWidth="210.0" style="-fx-font-weight: bold;" styleClass="text-field" text="Unite" />
+                  <HBox alignment="CENTER" prefHeight="53.0" prefWidth="285.0" spacing="20.0">
+                     <children>
+                        <JFXButton onAction="#modifier" styleClass="btn-default" text="Modifier">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="REFRESH" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton onAction="#supprimer" styleClass="btn-default" text="Supprimer">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="TRASH" />
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="774.0" layoutY="526.0" prefHeight="53.0" prefWidth="226.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <FontAwesomeIconView glyphName="CALCULATOR" size="20" styleClass="total" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="about-text" text="Total :" wrappingWidth="70.13671875">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXTextField fx:id="total" editable="false" text="0000.00 DA" />
+               </children>
+            </HBox>
+            <Hyperlink layoutY="86.0" onAction="#loadEdit" prefHeight="37.0" prefWidth="184.0" styleClass="link" text="Modifier le produit" textAlignment="CENTER">
+               <graphic>
+                  <FontAwesomeIconView glyphName="WRENCH" size="14" />
+               </graphic>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink layoutX="184.0" layoutY="86.0" onAction="#loadAdd" prefHeight="37.0" prefWidth="184.0" styleClass="link" text="Ajouter un produit" textAlignment="CENTER">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" size="14" />
+               </graphic>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+            <MenuBar layoutX="1026.0" layoutY="95.0" style="-fx-cursor: hand;" AnchorPane.rightAnchor="0.0">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Exporter">
+                     <items>
+                        <MenuItem fx:id="btnVoir" mnemonicParsing="false" onAction="#printInvoce" text="Voir la facture avant Exportation">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="EYE" size="15" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="btnExcel" mnemonicParsing="false" onAction="#printInvoce" text="Exporter en tant que Excel">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="FILE_EXCEL_ALT" size="15" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="btnPdf" mnemonicParsing="false" onAction="#printInvoce" text="Exporter en tant que PDF">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="FILE_PDF_ALT" size="15" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="btnPrint" mnemonicParsing="false" onAction="#printInvoce" text="Imprimer">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="PRINT" size="15" />
+                           </graphic>
+                        </MenuItem>
+                     </items>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="SHARE_SQUARE" size="15" />
+                     </graphic>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

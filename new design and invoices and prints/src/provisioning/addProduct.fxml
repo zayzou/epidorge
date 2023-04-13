@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="rootPane" stylesheets="@../resources/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="provisioning.Provision">
+   <children>
+      <AnchorPane fx:id="mainContainer">
+         <children>
+            <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="576.0" prefWidth="346.0" spacing="50.0" styleClass="sidePanel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label text="Facture N°  " textFill="#e7e5e5">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labNumFacture" text="..." textFill="#e7e5e5">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="75.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <JFXTextField fx:id="tfFacture" labelFloat="true" prefHeight="38.0" prefWidth="259.0" promptText="Numéro facture" unFocusColor="WHITE">
+                     <tooltip>
+                        <Tooltip text="Qte en unité d'achat " />
+                     </tooltip>
+                  </JFXTextField>
+                  <JFXTextField fx:id="tfFournisseur" labelFloat="true" layoutX="54.0" layoutY="170.0" prefHeight="38.0" prefWidth="259.0" promptText="ID fournisseur" unFocusColor="WHITE">
+                     <tooltip>
+                        <Tooltip text="Qte en unité d'achat " />
+                     </tooltip>
+                  </JFXTextField>
+                  <JFXComboBox fx:id="cbType" focusColor="#ffff8d" onAction="#loadDes" prefHeight="37.0" prefWidth="253.0" promptText="Type" />
+                  <HBox prefHeight="37.0" prefWidth="253.0" spacing="10.0">
+                     <children>
+                        <JFXComboBox fx:id="cbDes" focusColor="#ffff8d" onAction="#initLab" prefHeight="37.0" prefWidth="262.0" promptText="Désignation" />
+                        <Hyperlink onAction="#loadEdit" prefHeight="37.0" prefWidth="23.0" styleClass="link" textAlignment="CENTER">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="WRENCH" size="21" />
+                           </graphic>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Modifier le produit">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Hyperlink>
+                        <Hyperlink onAction="#loadAdd" prefHeight="37.0" prefWidth="29.0" styleClass="link" textAlignment="CENTER">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="PLUS" size="21" text="" wrappingWidth="20.785714149475098" />
+                           </graphic>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Ajouter Un Produit">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Hyperlink>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <JFXTextField fx:id="tfQte" labelFloat="true" layoutX="54.0" layoutY="229.0" prefHeight="38.0" prefWidth="259.0" promptText="Quantité" unFocusColor="WHITE">
+                     <tooltip>
+                        <Tooltip text="Qte en unité d'achat " />
+                     </tooltip>
+                  </JFXTextField>
+                  <Button mnemonicParsing="false" onAction="#ajouterProduit" styleClass="btn" text="Ajouter">
+                     <graphic>
+                        <ImageView fitHeight="90.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/icon/icons8-add-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <AnchorPane prefHeight="576.0" prefWidth="876.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox prefHeight="576.0" prefWidth="683.0" spacing="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="90.0" prefWidth="683.0" spacing="50.0" styleClass="toolBar">
+                           <children>
+                              <ToolBar opacity="0.89" prefHeight="55.0" prefWidth="400.0" style="-fx-background-color: transparent;">
+                                 <items>
+                                    <Button contentDisplay="GRAPHIC_ONLY" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#refresh" prefHeight="45.0" prefWidth="36.0" styleClass="btn" text="Button">
+                                       <graphic>
+                                          <ImageView fitHeight="32.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="bt">
+                                             <image>
+                                                <Image url="@../resources/icon/icons8-available-updates-50.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <tooltip>
+                                          <Tooltip text="Actualiser">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Tooltip>
+                                       </tooltip>
+                                    </Button>
+                                    <Button contentDisplay="GRAPHIC_ONLY" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#modifier" prefHeight="45.0" prefWidth="36.0" styleClass="btn" text="Button">
+                                       <graphic>
+                                          <ImageView fitHeight="32.0" fitWidth="50.0" layoutX="40.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/icon/settings_48px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <tooltip>
+                                          <Tooltip text="Modifier">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Tooltip>
+                                       </tooltip>
+                                    </Button>
+                                    <Button contentDisplay="GRAPHIC_ONLY" layoutX="40.0" layoutY="40.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="45.0" prefWidth="36.0" styleClass="btn" text="Button">
+                                       <graphic>
+                                          <ImageView fitHeight="32.0" fitWidth="50.0" layoutX="40.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/icon/icons8-delete-bin-50.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <tooltip>
+                                          <Tooltip text="Supprimer">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Tooltip>
+                                       </tooltip>
+                                    </Button>
+                                 </items>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ToolBar>
+                              <JFXDatePicker fx:id="tfDate" defaultColor="#0277fa" onAction="#loadHisto" promptText="Historique" styleClass="date-picker" />
+                              <HBox fillHeight="false" prefHeight="37.0" prefWidth="198.0">
+                                 <children>
+                                    <ImageView fitHeight="27.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icon/search_48px.png" />
+                                       </image>
+                                    </ImageView>
+                                    <JFXTextField fx:id="tfSearchFacture" labelFloat="true" onAction="#searchFacture" promptText="Entrer un numéro de facture" unFocusColor="#6b6969" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <ButtonBar buttonMinWidth="40.0" prefHeight="40.0" prefWidth="200.0">
+                          <buttons>
+                              <Button fx:id="btnPrint" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#printInvoice" prefHeight="45.0" prefWidth="36.0" styleClass="btn" text="Button">
+                                 <graphic>
+                                    <ImageView fitHeight="32.0" fitWidth="50.0" layoutX="40.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icon/print_48px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Imprimer">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="btnPdf" contentDisplay="GRAPHIC_ONLY" layoutX="790.0" layoutY="10.0" mnemonicParsing="false" onAction="#printInvoice" prefHeight="45.0" prefWidth="36.0" styleClass="btn" text="Button">
+                                 <graphic>
+                                    <ImageView fitHeight="32.0" fitWidth="50.0" layoutX="40.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icon/pdf_2_48px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Exporter en tant que PDF">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="btnExcel" contentDisplay="GRAPHIC_ONLY" layoutX="790.0" layoutY="10.0" mnemonicParsing="false" onAction="#printInvoice" prefHeight="45.0" prefWidth="36.0" styleClass="btn" text="Button">
+                                 <graphic>
+                                    <ImageView fitHeight="32.0" fitWidth="50.0" layoutX="40.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icon/ms_excel_48px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Exporter en tant que Excel">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="btnView" contentDisplay="GRAPHIC_ONLY" layoutX="620.0" layoutY="10.0" mnemonicParsing="false" onAction="#printInvoice" prefHeight="45.0" prefWidth="36.0" styleClass="btn" text="Button">
+                                 <graphic>
+                                    <ImageView fitHeight="32.0" fitWidth="50.0" layoutX="40.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icon/invoice_48px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Voir la facture">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </Button>
+                          </buttons>
+                        </ButtonBar>
+                        <TableView fx:id="tableProd" editable="true" prefHeight="372.0" prefWidth="683.0">
+                           <columns>
+                              <TableColumn fx:id="colId" prefWidth="75.0" text="#" visible="false" />
+                              <TableColumn fx:id="colDes" prefWidth="75.0" text="Désignation" />
+                              <TableColumn fx:id="colNumFacture" prefWidth="75.0" text="Num Facture" />
+                              <TableColumn fx:id="colQte" prefWidth="75.0" text="Qte" />
+                              <TableColumn fx:id="colPrixUnit" prefWidth="75.0" text="Prix unitaire" />
+                              <TableColumn fx:id="colTotal" prefWidth="75.0" text="Total" />
+                              <TableColumn fx:id="colDate" prefWidth="75.0" text="Date" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+                                    <MenuItem mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
+                        </TableView>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="922.0" spacing="50.0">
+                           <children>
+                              <Button fx:id="btnCredit" disable="true" mnemonicParsing="false" onAction="#ajouterCredit" styleClass="btn" text="Ajouter un crédit">
+                                 <graphic>
+                                    <ImageView fitHeight="90.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icon/money_bag_euro_48px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnVersement" disable="true" mnemonicParsing="false" onAction="#ajouterVersement" styleClass="btn" text="Ajouter un versement">
+                                 <graphic>
+                                    <ImageView fitHeight="90.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icon/cash_in_hand_48px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <HBox alignment="CENTER_RIGHT">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="about-text" text="Total :" wrappingWidth="59.13671875">
+                                       <font>
+                                          <Font name="Open Sans Regular" size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <JFXTextField fx:id="total" alignment="CENTER" editable="false" text="150.500.60 DA" unFocusColor="#4d4d4d00">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
